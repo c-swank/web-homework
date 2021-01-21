@@ -1,15 +1,19 @@
 import React, { Suspense } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { MainLayout } from './Main/MainLayout'
-import TransactionLayout from '../routes/Transactions/TransactionsLayout'
+import TransactionsPage from '../routes/Transactions/TransactionsPage'
 
 export function AppLayout () {
   return (
     <Router>
       <Suspense>
         <MainLayout>
-          <Route exact path='/' />
-          <Route component={TransactionLayout} path='/transactions' />
+          <Switch>
+            <Route exact path='/' />
+            <Route path='/transactions'>
+              <TransactionsPage />
+            </Route>
+          </Switch>
         </MainLayout>
       </Suspense>
     </Router>

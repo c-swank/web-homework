@@ -4,9 +4,9 @@ import { NavBar } from './NavBar'
 
 export function MainLayout (props) {
   return (
-    <div>
-      <NavBar style={{ width: 50 }} />
-      <div style={{ 'margin-left': 50, width: 'calc(100% - 50px)' }}>
+    <div className='main-container' style={{ height: '100vh', overflow: 'auto' }}>
+      <NavBar />
+      <div style={{ display: 'inline-block' }}>
         {props.children}
       </div>
     </div>
