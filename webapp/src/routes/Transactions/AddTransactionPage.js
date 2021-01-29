@@ -1,8 +1,7 @@
 import React from 'react'
 import { Button, Checkbox, FormControl, FormControlLabel, Input, TextField, Typography } from '@material-ui/core'
 import { css } from '@emotion/core'
-import { client } from '../../network/apollo-client'
-import { AddTransaction } from '../../gql/transactions.gql'
+import { addTransaction } from '../../services/addTransactions'
 
 const Style = css`
   width: 400px;
@@ -27,7 +26,6 @@ export class AddTransactionPage extends React.Component {
 
     this.submitForm = this.submitForm.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this)
-    window.submitForm = this.submitForm
   }
 
   submitForm () {
@@ -41,16 +39,8 @@ export class AddTransactionPage extends React.Component {
       amount: parseFloat(amount)
     }
 
-    this.addTransaction(data)
-  }
-
-  // This took a lot longer than I thought it would to figure out how to properly create a mutation
-  addTransaction (inputData) {
-    const transactions = client.mutate({
-      mutation: AddTransaction,
-      variables: { ...inputData }
-    })
-    window._transaction = transactions
+    // TODO: Implement form state updates on addTransaction response
+    addTransaction(data)
   }
 
   handleInputChange (event) {
